@@ -12,13 +12,13 @@
 
 	<servlet>
 		<description>Servlet that acts as controller</description>
-		<display-name>controller</display-name>
-		<servlet-name>controller</servlet-name>
-		<servlet-class>servlet.Controller</servlet-class>
+		<display-name>LoginController</display-name>
+		<servlet-name>LoginController</servlet-name>
+		<servlet-class>servlet.LoginController</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
-		<servlet-name>controller</servlet-name>
-		<url-pattern>/controller</url-pattern>
+		<servlet-name>LoginController</servlet-name>
+		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
 </web-app>

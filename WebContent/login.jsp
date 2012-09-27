@@ -6,7 +6,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	</head>
 	<body>
-		<form name="form_login" method="post" action="controller">
+		<form name="form_login" method="post" action="login">
 			<input type="text" name="username">
 			<input type="password" name="password">
 			<input type="submit" value="Login">

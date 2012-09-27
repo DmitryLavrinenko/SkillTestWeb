@@ -15,23 +15,63 @@ public class LoginPage {
 	public static void init() throws Exception {
 		tester = new WebTester();
 		server = new Server(0);
-		server.addHandler(new WebAppContext("WebContent/WEB-INF", "/controller"));
+		server.addHandler(new WebAppContext("WebContent", "/SkillTestWeb"));
 		server.stop();
 		server.start();
 		
 		int port = server.getConnectors()[0].getLocalPort();
-		System.out.println(port);
-		server.join();
-		tester.getTestContext().setBaseUrl("http://localhost:" + port + "/controller");
+		tester.getTestContext().setBaseUrl("http://localhost:" + port + "/SkillTestWeb");
 	}
 	
 	@Test
-	public void test() {
-		tester.beginAt("/login.jsp");
+	public void testLogin() {
+		tester.beginAt("/");
 		tester.assertFormPresent("form_login");
 		tester.assertFormElementPresent("username");
 		tester.assertFormElementPresent("password");
-		tester.assertSubmitButtonPresent("Login");
+		tester.assertButtonPresentWithText("Login");
+	}
+	
+	@Test
+	public void testLoginSuccesfully() {
+		tester.beginAt("/");
+		
+		tester.setTextField("username", "user");
+		tester.setTextField("password", "pass");
+		tester.clickButtonWithText("Login");
+		
+		tester.assertTextPresent("You have successfully logged in");
+		tester.assertTextPresent("User name: user"); 
+		tester.assertTextPresent("Password: pass"); 
+	}
+	
+	@Test
+	public void testLoginIfNoSuchUser() {
+		tester.beginAt("/");
+		
+		tester.setTextField("username", "user" + "unknown");
+		tester.setTextField("password", "pass");
+		tester.clickButtonWithText("Login");
+		
+		tester.assertTextPresent("You have entered an incorrect username or password");
+	}
+	
+	@Test
+	public void testLoginIfWrongPassword() {
+		tester.beginAt("/");
+		
+		tester.setTextField("username", "user");
+		tester.setTextField("password", "pass" + "wrong");
+		tester.clickButtonWithText("Login");
+		
+		tester.assertTextPresent("You have entered an incorrect username or password");
+	}
+	
+	public void testUnsuccessfullLoginPageHasALinkToLoginPage() {
+		testLoginIfNoSuchUser();
+		
+		tester.assertLinkPresentWithExactText("go to login");
+		tester.clickLinkWithExactText("go to login");
 	}
 
 	@AfterClass
