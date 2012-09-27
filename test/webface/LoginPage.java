@@ -1,4 +1,4 @@
-package test.webface;
+package webface;
 
 import net.sourceforge.jwebunit.junit.WebTester;
 
@@ -67,6 +67,7 @@ public class LoginPage {
 		tester.assertTextPresent("You have entered an incorrect username or password");
 	}
 	
+	@Test
 	public void testUnsuccessfullLoginPageHasALinkToLoginPage() {
 		testLoginIfNoSuchUser();
 		

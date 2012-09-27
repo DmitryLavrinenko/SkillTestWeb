@@ -1,4 +1,4 @@
-package test.webface;
+package webface;
 
 import org.mortbay.jetty.Server;
 import org.mortbay.jetty.webapp.WebAppContext;
