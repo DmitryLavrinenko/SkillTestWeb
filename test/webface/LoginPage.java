@@ -75,6 +75,19 @@ public class LoginPage {
 		tester.clickLinkWithExactText("go to login");
 	}
 
+	@Test
+	public void testLoginAnotherUserSuccesfully() {
+		tester.beginAt("/");
+
+		tester.setTextField("username", "kuku");
+		tester.setTextField("password", "ruku");
+		tester.clickButtonWithText("Login");
+
+		tester.assertTextPresent("You have successfully logged in");
+		tester.assertTextPresent("User name: kuku");
+		tester.assertTextPresent("Password: ruku");
+	}
+
 	@AfterClass
 	public static void end() throws Exception {
 		server.stop();

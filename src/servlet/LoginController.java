@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import user.UserService;
+import user.UserServiceFile;
 import user.UserServiceMock;
 
 public class LoginController extends HttpServlet {
@@ -24,7 +25,7 @@ public class LoginController extends HttpServlet {
 	}
 
 	public LoginController() {
-		this.users = new UserServiceMock();
+		this.users = new UserServiceFile("user/users_accounts.txt");
 	}
 
 	@Override

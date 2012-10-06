@@ -16,7 +16,7 @@ public final class JettyServerRunner {
 		server.start();
 		
 		int port = server.getConnectors()[0].getLocalPort();
-		System.out.println(port);
+		System.out.println("http://localhost:" + port + "/SkillTestWeb");
 		server.join();
 	}
 

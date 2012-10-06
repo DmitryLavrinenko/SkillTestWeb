@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class UserServiceTest {
+public class UserServiceMockTest {
 
 	private static final UserServiceMock users = new UserServiceMock();
 
